@@ -1,0 +1,53 @@
+package com.sample.testing;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class StringHelperTest {
+
+	@Before
+	public static void before() {
+		System.out.println("Before Test ...");
+	}
+
+	@After
+	public static void after() {
+		System.out.println("After Tets ...");
+	}
+
+	@Before
+	public void beforeClass() {
+		System.out.println("Before class ...");
+	}
+
+	@After
+	public void afterClass() {
+		System.out.println("After class ...");
+	}
+
+	@Test
+	public void testSimple() {
+		StringHelper helper = new StringHelper();
+		assertEquals("BB", helper.truncateAFromFirstTwoPosition("AABB"));
+		assertEquals("BB", helper.truncateAFromFirstTwoPosition("ABB"));
+		assertEquals("BB", helper.truncateAFromFirstTwoPosition("BB"));
+		assertEquals("B", helper.truncateAFromFirstTwoPosition("AB"));
+	}
+
+	@Test
+	public void testStringTruncate() {
+		StringHelper helper = new StringHelper();
+		String str = "RTAA";
+		String expectedOutput = "RTAA";
+		String actualOutput = helper.truncateAFromFirstTwoPosition(str);
+		assertEquals(expectedOutput, actualOutput);
+	}
+	
+
+}

@@ -1,0 +1,61 @@
+package com.sample.testing.todo;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+/*
+ * What is Mocking?
+ * well mocking is creating object that simulates the behavior of real objects.
+ * Unlike stub, mocks can be dynamically created from code.
+ * mock offers lot more functionality than stubbing
+ */
+
+@RunWith(MockitoJUnitRunner.class)
+public class TodoBusinessImplMockInjectMockito {
+	
+	@Mock
+	TodoService todoServiceMock;
+	// TodoService todoServiceMock = mock(TodoService.class); -- saving this line
+
+	@InjectMocks
+	TodoBusinessImpl businessImpl;
+	// TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
+	// --saving this line
+
+	@Test
+	public void testRetreiveTodoRelatedToSpring_usingMock() {
+		// given
+		List<String> todos = Arrays.asList("learn spring", "learn spring mvc", "learn java");
+
+		// when
+		when(todoServiceMock.retreiveTodos("dummy_user")).thenReturn(todos);
+
+		// then
+		List<String> filteredTodos = businessImpl.retrieveTodosRelatedToSpring("dummy_user");
+		assertEquals(2, filteredTodos.size());
+
+	}
+
+	@Test
+	public void testRetreiveTodoRelatedToHibernate_usingMock() {
+		// given
+		List<String> todos = Arrays.asList("learn Hibernate", "todo Hibernate", "Hibernate JPA", "learn Spring");
+
+		// when
+		when(todoServiceMock.retreiveTodos("dummy_user")).thenReturn(todos);
+
+		// then
+		List<String> filteredTodos = businessImpl.retrieveTodosRelatedToHibernate("dummy_user");
+		assertEquals(3, filteredTodos.size());
+	}
+
+}
