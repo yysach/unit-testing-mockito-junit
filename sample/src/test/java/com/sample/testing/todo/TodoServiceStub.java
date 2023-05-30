@@ -5,6 +5,8 @@ import java.util.List;
 
 /*
 * 
+* Stub is dummy implemention of TodoService.
+* 
 *  Problem with stubs:
 *  - Dynamic condition adds lots of maintanence overhead
 *  - service definitation change overhead
@@ -20,6 +22,11 @@ public class TodoServiceStub implements TodoService {
 	@Override
 	public List<String> retreiveTodos(String user) {
 		return Arrays.asList("Learn spring mvc", "learn spring", "learn to dance");
+	}
+
+	@Override
+	public void deleteTodos(String todo) {
+		
 	}
 
 }

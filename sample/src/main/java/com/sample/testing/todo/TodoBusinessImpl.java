@@ -4,8 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- *  TodoBusinessImple is SUT system under test
- *  and TodoService is dependency
+ *  TodoBusinessImpl is SUT system under test
+ *  Problem here we are discussing, how will we test this SUT without TodoServiceImpl (under development by some other team)
+ *  and TodoService is its dependency
+ *  
+ *  Two solution :
+ *  1.) stub
+ *  2.) mock using mockito
+ *  
+ *  
  *  Stub is nothing but a sample implementation or a dummy implementation for this todoService dependency
  *  A stub is only used for unit testing
  *  
@@ -51,6 +58,15 @@ public class TodoBusinessImpl {
 		}
 
 		return filteredTodos;
+	}
+	
+	public void deleteTodosRelatedToSpring(String user) {
+		List<String> todos = this.service.retreiveTodos(user);
+		for(String todo : todos) {
+			if(todo.contains("spring")) {
+				this.service.deleteTodos(todo);
+			}
+		}
 	}
 
 }
