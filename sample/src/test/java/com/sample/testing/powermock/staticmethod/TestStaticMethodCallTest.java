@@ -1,11 +1,8 @@
 package com.sample.testing.powermock.staticmethod;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.mockito.Matchers.anyString;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -48,9 +45,11 @@ public class TestStaticMethodCallTest {
 
 	@Test
 	public void testGetStaticMethodCall() {
-		System.out.println(methodCall.getStaticMethodCall("This is input message"));
-		System.out.println("___________________________");
-		System.out.println(methodCall.getStaticMethodCall("This is input message"));
+		// this is how, we verify static method call
+		assertEquals("StubbedMessage", methodCall.getStaticMethodCall("this is random string"));
+		
+		PowerMockito.verifyStatic(Utility.class);
+		Utility.staticMethod("this is random string");
 	
 	}
 
