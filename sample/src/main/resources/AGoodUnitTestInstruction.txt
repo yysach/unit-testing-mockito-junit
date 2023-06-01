@@ -1,0 +1,7 @@
+A good unit test should have following properties
+
+1.) Readability
+2.) Try to cover every passing, failing scenrios
+3.) target coverage 70-80 %
+4.) A good unit test will help you to get bug in existing code
+5.) A good unit test will also help you how to fix that bug.
